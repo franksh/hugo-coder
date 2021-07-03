@@ -1,0 +1,73 @@
+{{ define "title" }}
+{{ title (i18n (lower .Title)) | default .Title }} · {{ .Site.Title }}
+{{ end }}
+{{ define "content" }}
+
+<section class="home">
+
+  <div class="row pack">
+
+    {{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") }}
+    {{ range $paginator.Pages }}
+    <div class="col-md-4">
+      <div class="card card-post" style="width: 100%;">
+        {{ if .Params.img }}
+        <img class="card-img-top" src="{{ .Site.BaseURL }}images/{{ .Params.img }}" alt="{{ .Title }}">
+        {{ else }}
+        <img width="100%" class="card-img-top" src="{{ .Site.BaseURL }}images/{{ .Site.Params.defaultImage }}"
+          alt="{{ .Site.Title }}">
+        {{ end }}
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          {{ if .Params.summary }}
+          <p class="card-text">{{ .Params.summary }}</p>
+          {{ else }}
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          {{ end }}
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+
+    </div>
+
+    {{ end }}
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-4"> </div>
+    <div class="col-md-4">
+      {{ if gt .Paginator.TotalPages 1 }}
+      <ul class="pagination">
+        {{ if .Paginator.HasPrev }}
+        <li><a href="{{ .Paginator.Prev.URL }}">&laquo; Prev</a></li>
+        {{ else }}
+        <li><span>&laquo; Prev</span></li>
+        {{ end }}
+
+        {{ $scratch := newScratch }}
+        {{ $scratch.Set "current" .Paginator.PageNumber }}
+
+        {{ range .Paginator.Pagers }}
+        {{ if eq .PageNumber ($scratch.Get "current") }}
+        <li class="active"><span><em>{{ .PageNumber }}</em></span></li>
+        {{ else }}
+        <li><a href="{{ .URL }}">{{ .PageNumber }}</a></li>
+        {{ end }}
+        {{ end }}
+
+        {{ if .Paginator.HasNext }}
+        <li><a href="{{ .Paginator.Next.URL }}">Next &raquo;</a></li>
+        {{ else }}
+        <li><span>Next &raquo;</span></li>
+        {{ end }}
+      </ul>
+      {{ end }}
+
+    </div>
+    <div class="col-md-4"> </div>
+  </div>
+</section>
+
+{{ end }}
