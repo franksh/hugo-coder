@@ -11,7 +11,7 @@
           <div class="avatar"><img src="https://www.gravatar.com/avatar/{{md5 .}}?s=240&d=mp" alt="gravatar"></div>
         {{ end }}
         {{ with .Site.Params.social }}
-        <ul>
+        <ul id='social-links'>
           {{ range sort . "weight" }}
             {{ if .icon }}
               <li>
@@ -30,9 +30,10 @@
       </div>
 
     </div>
+    <div class="col-md-1"></div>
     <div class="col-md-6 align-top">
       <div>
-      <h2>Hi, I'm Frank</h2>
+      <h2 id="about-title">Hi, I'm Frank</h2>
       <p>I'm a data scientist and researcher in Berlin</p>
       <p>Read more about me <a href="{{ .RelPermalink }}">here</a></p>
 
@@ -42,6 +43,7 @@
     </div>
     
   </div>
+
   <div class="row pack p-1 mx-auto align-top" style="width: 100%; margin-top: 50px;">
     <h2>Latest Posts</h2>
 
@@ -52,7 +54,10 @@
      
 
       {{ end }}
-
-
+  </div>
+  <div class="row pack centered p-1 mx-auto align-top" style="width: 100%;">
+    <div class="col-md-3 centered">
+      <a href="/posts" class="btn btn-md btn-outline-secondary">See all posts</a>
+    </div>
   </div>
 </section>

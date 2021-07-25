@@ -7,11 +7,11 @@
   <h1>Posts</h1>
 
   <div class="container">
-    <div class="row pack" data-masonry='{"percentPosition": true }'>
+    <div class="row pack" data-masonry='{ "percentPosition": true}'>
 
       {{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") }}
       {{ range $paginator.Pages }}
-      {{ partial "posts/card.html" . }}
+      {{ partial "posts/card_large.html" . }}
 
       {{ end }}
 

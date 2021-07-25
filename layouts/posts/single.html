@@ -19,6 +19,14 @@
               <time datetime='{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}'>
                 {{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}
               </time>
+              {{ if .Params.date_updated }}
+                <time datetime='{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}'>
+                  | last updated: 
+                  {{ dateFormat "January 2, 2006" .Params.date_updated }}
+                </time>
+                
+              {{ end }}  
+
             </span>
             <span class="reading-time">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
