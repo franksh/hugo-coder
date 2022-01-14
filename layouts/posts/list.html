@@ -4,6 +4,21 @@
 {{ define "content" }}
 
 <section class="home container w-100 p-3">
+
+  <script>
+    // init Masonry
+  var $grid = $('.grid').masonry({
+    itemSelector: '.grid-item',
+    percentPosition: true,
+    columnWidth: '.grid-sizer'
+  });
+
+  // layout Masonry after each image loads
+  $grid.imagesLoaded().progress( function() {
+    $grid.masonry();
+  });
+  </script>
+
   <h1>Posts</h1>
 
   <div class="container">
